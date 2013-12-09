@@ -6,7 +6,32 @@ gem 'rails', '3.2.14'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'sidekiq'
+gem 'lodash-rails'
+gem 'eco'
+gem 'omniauth-facebook', '1.4.0'
+gem 'ejs'
+gem 'omniauth-twitter'
+gem 'omniauth'
+gem 'unf'
+gem 'carrierwave_direct'
+gem 'carrierwave'  #file uploader
+gem 'rmagick'      #for carrierwave
+gem 'fog'          #ruby cloud service library(cloud resources)
+# gem 'gon'
+# gem 'unicorn-rails'
 
+
+group :developet, :test do
+  gem 'pry'
+  gem 'pry-remote'
+  gem 'pry-rails'
+  gem 'pry-debugger'
+  gem 'better_errors'
+  gem 'quiet_assets'
+  gem 'rspec-rails'
+  gem 'dotenv-rails'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
