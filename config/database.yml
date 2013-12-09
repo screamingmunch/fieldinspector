@@ -43,13 +43,11 @@ test:
   encoding: unicode
   database: field_inspector_test
   pool: 5
-  username: field_inspector
-  password:
+
 
 production:
   adapter: postgresql
   encoding: unicode
   database: field_inspector_production
   pool: 5
-  username: field_inspector
-  password:
+

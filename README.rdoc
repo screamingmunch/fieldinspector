@@ -4,3 +4,11 @@ use pry_remote for debugging (since we're running foreman).
 
 To check your IP address, type `ifconfig` in your terminal.
 
+To setup postgres:
+- upon creation of the rails project.
+- rails new projectname --database=postgresql
+- in the database.yml file, delete the username and pw fields and add:
+  host: localhost
+    port: 5432
+- Don't forget to run `rake db:create` to create your db!!
+
