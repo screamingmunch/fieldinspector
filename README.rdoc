@@ -1,10 +1,10 @@
-To use foreman, type `foreman run rails s` in command line.
+1. To use foreman, type `foreman run rails s` in command line.
 
 use pry_remote for debugging (since we're running foreman).
 
-To check your IP address, type `ifconfig` in your terminal.
+2. To check your IP address, type `ifconfig` in your terminal.
 
-To setup postgres:
+3. To setup postgres:
 - upon creation of the rails project.
 - rails new projectname --database=postgresql
 - in the database.yml file, delete the username and pw fields and add:
@@ -12,3 +12,5 @@ To setup postgres:
     port: 5432
 - Don't forget to run `rake db:create` to create your db!!
 
+
+4. For RMagick to work, you'll need to run `brew install ImageMagick` in your command line

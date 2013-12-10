@@ -1,0 +1,5 @@
+  <form action="/photos" method="post" enctype="multipart/form-data">
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
+    <input name="image" type="file" accept="image/*;capture=camera">
+    <input type="submit">
+  </form>

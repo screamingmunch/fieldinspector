@@ -22,9 +22,9 @@ gem 'fog'          #ruby cloud service library(cloud resources)
 # gem 'unicorn-rails'
 
 
-group :developet, :test do
-  gem 'pry'
+group :development, :test do
   gem 'pry-remote'
+  gem 'pry'
   gem 'pry-rails'
   gem 'pry-debugger'
   gem 'better_errors'

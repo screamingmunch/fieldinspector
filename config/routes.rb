@@ -1,4 +1,4 @@
-FieldInspectorApp::Application.routes.draw do
+FieldInspector::Application.routes.draw do
 
   #   match 'products/:id' => 'catalog#view'
 
@@ -9,5 +9,6 @@ FieldInspectorApp::Application.routes.draw do
   #   end
 
   root :to => 'home#index'
+  resources :photos
 
 end

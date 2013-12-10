@@ -3,16 +3,21 @@ You are currently located at:
 
 <div id="address"></div>
 
-<form action="/" method="post" enctype="multipart/form-data">
-  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
-  <!-- <input type="file" accept="image/*" capture="camera" action='/'> -->
-  <input name="image" type="file" accept="image/*;capture=camera">
-  <!--
-  <input type="file" accept="video/*" capture="camcorder">
-  <input type="file" accept="audio/*" capture="microphone">
-  -->
-  <input type="submit">
+<div id="photos">
+  <h1>You have uploaded a photo!</h1>
 
-</form>
+  <form action="/" method="post" enctype="multipart/form-data">
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
+    <input name="image" type="file" accept="image/*;capture=camera">
+    <input type="submit">
+  </form>
 
-<%= @photos %>
+  <% @photos.each do |x| %>
+    <p><%= x.id %></p>
+    <p><img src="<%= x.image.url %>"/></p>
+  <% end %>
+
+
+
+
+</div>
