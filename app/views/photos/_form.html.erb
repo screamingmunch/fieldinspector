@@ -1,0 +1,31 @@
+<%= form_for @photo, :html => {:multipart => true} do |f| %>
+
+  <% if @photo.errors.any? %>
+  <div id="errorExplaination">
+    <h3><%= pluralize(@photo.errors.count, "error") %> prohibited this file from being saved: </h3>
+    <ul>
+      <% @photo.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div id="imageuploadForm">
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :report_id %>
+    <%= f.hidden_field :key %>
+    <p>File: <%= @photo.image_name %>
+    </p>
+    <p>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %>
+      <%= image_tag(@photo.image.thumb.url) if @photo.image? %>
+    </p>
+    <p>
+
+      <label><%= f.check_box :remove_image %> Remove Image</label>
+    </p>
+    <p><%= f.submit %></p>
+  </div>
+<% end %>

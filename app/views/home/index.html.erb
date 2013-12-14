@@ -3,18 +3,22 @@ You are currently located at:
 
 <div id="address"></div>
 
-<div id="photos">
-  <h1>You have uploaded a photo!</h1>
+<br>
+Current Forecast:
+<div id="weather"></div>
 
-  <form action="/" method="post" enctype="multipart/form-data">
-    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
-    <input name="image" type="file" accept="image/*;capture=camera">
-    <input type="submit">
-  </form>
+
+<div id="photos">
+
 
   <% @photos.each do |x| %>
     <p><%= x.id %></p>
     <p><img src="<%= x.image.url %>"/></p>
+    <% if x.image_processed? %>
+      <p><img src="<%= x.image.url(:thumb).to_s %>"/></p>
+    <% else %>
+      <em>Processing...</em>
+    <% end %>
   <% end %>
 
 

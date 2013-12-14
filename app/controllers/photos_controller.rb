@@ -1,12 +1,12 @@
 class PhotosController < ApplicationController
   def index
     @photos = Photo.all || "photos"
-    # @uploader = Photo.new.image_source
-    # @uploader.success_action_redirect = new_report_photo_url
+    @uploader = Photo.new.image
+    @uploader.success_action_redirect = new_photo_url
   end
 
   def new
-    @photo = Photo.new
+    @photo = Photo.new(key: params[:key])
     # @photo[:report_id] = params[:report_id]
     # @photo[:user_id] = current_user.id
     # render :inline => report_id
@@ -15,12 +15,7 @@ class PhotosController < ApplicationController
   def create
     # @photo = Photo.create(params.slice :image)
     # render json: @photo
-    @photo = Photo.new(photo_params)
-    if @photo.save
-      redirect_to photos_path, notice: "A photo file #{@photo.title} has been uploaded."
-    else
-      render "new"
-    end
+    @photo = Photo.create(params[:photo])
     redirect_to root_path
   end
 
@@ -47,11 +42,15 @@ class PhotosController < ApplicationController
     end
   end
 
+
   #strong parameters (Rails 4)
-private
-  def photo_params
-    params.require(:photo).permit(:title, :user_id, :caption, :image)
-  end
-end
+# private
+#   def photo_params
+#     params.require(:photo).permit(:title, :user_id, :caption, :image, :remote_image_url)
+#   end
+
+#   def key_params
+#     params.require(:photo).permit(:key)
+#   end
 
 end

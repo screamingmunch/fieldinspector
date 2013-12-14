@@ -11,15 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131209225824) do
+ActiveRecord::Schema.define(:version => 20131212215946) do
+
+  create_table "locations", :force => true do |t|
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "project_name"
+    t.integer  "zip"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "photos", :force => true do |t|
     t.string   "image"
     t.integer  "report_id"
     t.integer  "user_id"
+    t.string   "remote_image_url"
     t.boolean  "image_processed"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "reports", :force => true do |t|

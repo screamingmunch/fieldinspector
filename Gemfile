@@ -13,11 +13,13 @@ gem 'omniauth-facebook', '1.4.0'
 gem 'ejs'
 gem 'omniauth-twitter'
 gem 'omniauth'
-gem 'unf'
 gem 'carrierwave_direct'
 gem 'carrierwave'  #file uploader
 gem 'rmagick'      #for carrierwave
 gem 'fog'          #ruby cloud service library(cloud resources)
+gem 'unf'
+gem 'nokogiri'
+gem 'typhoeus'
 # gem 'gon'
 # gem 'unicorn-rails'
 
@@ -31,6 +33,7 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'rspec-rails'
   gem 'dotenv-rails'
+  gem 'binding_of_caller'
 end
 
 # Gems used only for assets and not required
