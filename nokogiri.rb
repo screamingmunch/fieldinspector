@@ -23,7 +23,7 @@ data.css("ul.point-forecast-7-day li").each do |day|
   weather = day.xpath('text()').to_s.strip
   forecast[time] = weather
 end
-
+puts data
 puts forecast
 
 

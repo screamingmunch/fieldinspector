@@ -1,5 +1,8 @@
 $(function(){
 
+  // JS:  gets currentPosition from user device.
+  // If navigator.geolocation exist, sePosition function gets called
+  // otherwise, askPosition function is executed
 
   var getLocation = function(){
     if (navigator.geolocation) {
@@ -11,15 +14,18 @@ $(function(){
     console.log(position)
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
+    //randomize lat, lng for development only
     lat += Math.random() / 100;
     lng += Math.random() / 100;
-    getAddress(lat.toFixed(5), lng.toFixed(5))
-    // console.log("The position is ", position)
+    getAddress(lat.toFixed(5), lng.toFixed(5)) //toFixed(5) up to 5 sigfigs
   }
 
   var askPosition = function(position){
     address = prompt("Please enter your location.")
   }
+
+  // using lat/lng from navigator.getCurrentPosition, then passing to google map api
+  // get address & city
 
   var getAddress = function(lat, lng) {
     var latlng = lat + "," + lng;
@@ -39,59 +45,59 @@ $(function(){
           // console.log(response);
           city = response["results"][0]["address_components"][3]["long_name"];
           address = response["results"][0]["formatted_address"];
-          //console.log(city);
-          //console.log(address);
-        }
-//
-displayLocation(lat, lng, city, address)
-}
-});
-  }
+        };
 
-  var displayLocation = function(lat, lng, city, address)
-  {
+      displayLocation(lat, lng, city, address);  //perform callback
+
+      }
+    }); //end ajax request to google map api
+  } // end getAddress function
+
+  var displayLocation = function(lat, lng, city, address) {
     la = '<li id="city">'+city+'</li>'
     $('#location').append(la);
     $('#location').append('<li id="lat">'+lat+'</li>');
     $('#location').append('<li id="lng">'+lng+'</li>');
     $('#location').append('<li id="address">'+address+'</li>');
-    console.log(city)
+    //console.log(city)
 
-    postRequest(city, lat, lng, address)
+    postRequest(lat, lng, city, address) // POST these params to my backend locations table
   }
 
-  var postRequest = function(city, lat, lng, address){
+  var postRequest = function(lat, lng, city, address){
     $.ajax({
       type: "POST",
-      url:  "/locations",
+      url:  "/locations", //locations controller
       data: { location: {
         latitude: lat,
         longitude: lng,
         address: address,
         city: city
-      }
-    }
-  }).done(function(data){
-    $.ajax({
-      type: "GET",
-      url: "/locations/"+data.id+"/forecasts",
-    }).done(function(response){
-      console.log(this);
-      console.log(response);
-      for(var i= 0; i < Object.keys(response).length; i++){
-        console.log(response[i]);
-        $('#weather').append('<li>' + response[i].forecast_day + ': ' + response[i].weather + '</li>');
-        if (response[i].inspection == true) {
-          $('#weather').append('<li> Inspection required on :'+ response[i].forecast_day + '</li>');
         }
-      };
-    })
-  })
+      }
+    }).done(function(data){
+    // once these locations attr are saved in backend,
+    // grab the json returned from the forecasts controller
 
-}
+      $.ajax({
+        type: "GET",
+        url: "/locations/"+data.id+"/forecasts",
+      }).done(function(response){
+        // console.log(this);
+        // console.log(response);
+        for(var i= 0; i < Object.keys(response).length; i++){
+          console.log(response[i]);
+          $('#weather').append('<li>' + response[i].forecast_day + ': ' + response[i].weather + '</li>');
+          if (response[i].inspection == true) {
+            $('#weather').append('<li> Inspection required on :'+ response[i].forecast_day + '</li>');
+          };
+        };
+    }) // end .done function
+    }) // end POST ajax call
+  } // end postRequest
 
 getLocation();
-setTimeout(function(){console.log(this)}, 2000);
+// setTimeout(function(){console.log(this)}, 2000);
 });
 
 

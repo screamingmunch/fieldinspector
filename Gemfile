@@ -20,6 +20,7 @@ gem 'fog'          #ruby cloud service library(cloud resources)
 gem 'unf'
 gem 'nokogiri'
 gem 'typhoeus'
+gem 'bcrypt-ruby', :require => 'bcrypt'
 # gem 'gon'
 # gem 'unicorn-rails'
 

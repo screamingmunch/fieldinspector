@@ -1,4 +1,6 @@
 class PhotosController < ApplicationController
+  skip_before_action :logged_in?, only: [:new, :create, :destroy]
+
   def index
     @photos = Photo.all || "photos"
     @uploader = Photo.new.image

@@ -7,7 +7,6 @@ class HomeController < ApplicationController
     # end
     @photos = Photo.all
 
-
   end
 
 

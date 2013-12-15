@@ -1,5 +1,10 @@
 FieldInspector::Application.routes.draw do
 
+  get "sign_up" => "users#new", :as => "sign_up"
+  get "log_in"  => "sessions#new", :as => "log_in"
+  get "log_out" => "sessions#destroy", :as => "log_out"
+
+
   #   match 'products/:id' => 'catalog#view'
 
   # Sample resource route with sub-resources:
@@ -11,13 +16,14 @@ FieldInspector::Application.routes.draw do
 
   root :to => 'home#index'
 
-  resources :reports do
-    resources :photos
+  resources :locations do
+    resources :forecasts, only: [:index]
+    resources :reports do
+      resources :photos
+    end
   end
 
-  resources :locations do
-    resources :forecasts
-  end
-  resources :photos, :reports, :locations
+  resources :users
+  resources :sessions, only: [:new, :crete, :destroy]
 
 end
