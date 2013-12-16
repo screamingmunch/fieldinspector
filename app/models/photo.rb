@@ -4,13 +4,13 @@ class Photo < ActiveRecord::Base
   after_save :enqueue_image
 
   belongs_to :report
-  belongs_to :user
 
   mount_uploader :image, ImageUploader
   # validates :title, presence: true
 
 
   def image_name
+
     File.basename(image.path || image.filename) if image
   end
 

@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
   attr_accessor :password
   before_save :encrypt_password  #ActiveRecord callback
 
+  has_many :locations_users
+  has_many :locations, through: :locations_users
+  has_many :reports
+  has_many :photos, through: :reports
+
   validates_confirmation_of :password
   validates :password, presence: true, length: { minimum: 6 }, :on => :create
   validates_presence_of :first_name, :on => :create

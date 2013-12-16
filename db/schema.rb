@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131212215946) do
+ActiveRecord::Schema.define(:version => 20131215084311) do
 
   create_table "locations", :force => true do |t|
     t.float    "latitude"
@@ -25,10 +25,16 @@ ActiveRecord::Schema.define(:version => 20131212215946) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "locations_users", :force => true do |t|
+    t.integer  "location_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "photos", :force => true do |t|
     t.string   "image"
     t.integer  "report_id"
-    t.integer  "user_id"
     t.string   "remote_image_url"
     t.boolean  "image_processed"
     t.datetime "created_at",       :null => false
@@ -36,8 +42,13 @@ ActiveRecord::Schema.define(:version => 20131212215946) do
   end
 
   create_table "reports", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "location_id"
+    t.integer  "user_id"
+    t.date     "report_date"
+    t.string   "report_type"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|

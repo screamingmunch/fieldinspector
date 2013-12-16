@@ -14,7 +14,7 @@ task :fetch_conditions => :environment do
     forecast = Hash.new
     i=0
     data = Nokogiri::HTML(open(url).read)
-    puts data.to_s
+    # puts data.to_s
     data.css("ul.point-forecast-7-day li").each do |day|
       time = day.at_css("span").text
       weather = day.xpath('text()').to_s.strip

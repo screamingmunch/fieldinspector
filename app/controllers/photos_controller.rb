@@ -1,13 +1,15 @@
 class PhotosController < ApplicationController
-  skip_before_action :logged_in?, only: [:new, :create, :destroy]
+  skip_before_filter :logged_in?, only: [:new, :create, :destroy]
 
   def index
     @photos = Photo.all || "photos"
     @uploader = Photo.new.image
-    @uploader.success_action_redirect = new_photo_url
+    @uploader.success_action_redirect = new_location_report_photo_url
   end
 
   def new
+    @location = Location.find(params[:location_id])
+    @report = Report.find(params[:report_id])
     @photo = Photo.new(key: params[:key])
     # @photo[:report_id] = params[:report_id]
     # @photo[:user_id] = current_user.id
@@ -33,7 +35,7 @@ class PhotosController < ApplicationController
   def destroy
     @photo = Photo.find(params[:id])
     @photo.destroy
-    redirect_to photos_path, notice: "Photo #{@photo.title} was successfully destroyed!"
+    redirect_to location_report_photos_path, notice: "Photo #{@photo.title} was successfully destroyed!"
   end
 
   def all_photos

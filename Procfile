@@ -1,3 +1,3 @@
 web: bundle exec rails server
-worker: redis-server
+redis: redis-server
 worker: bundle exec sidekiq
