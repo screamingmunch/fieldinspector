@@ -1,9 +1,10 @@
 FieldInspector::Application.routes.draw do
 
+  root :to => 'sessions#new'
   get "sign_up" => "users#new", :as => "sign_up"
   get "log_in"  => "sessions#new", :as => "log_in"
   get "log_out" => "sessions#destroy", :as => "log_out"
-
+  get 'locations/json', to: 'locations#location_json'
 
   #   match 'products/:id' => 'catalog#view'
 
@@ -12,9 +13,6 @@ FieldInspector::Application.routes.draw do
   #     resources :comments, :sales
   #     resource :seller
   #   end
-  get 'locations/json', to: 'locations#location_json'
-
-  root :to => 'home#index'
 
   resources :locations do
     resources :forecasts, only: [:index]
@@ -24,6 +22,7 @@ FieldInspector::Application.routes.draw do
   end
 
   resources :users
-  resources :sessions, only: [:new, :crete, :destroy]
+  resources :home, only: [:index]
+  resources :sessions, only: [:new, :create, :destroy]
 
 end

@@ -1,12 +1,16 @@
 class SessionsController < ApplicationController
   def new
+    gon.current_user = current_user
+    # redirect_to '/users/' + current_user.id.to_s if logged_in?
+    # redirect_to '/home' unless request.user_agent =~ /Mobile|webOS/
   end
 
   def create
-    user = User.authenticate(params[:email], params[:password])
+    # raise params.inspect
+    user = User.authenticate(params[:session][:email], params[:session][:password])
     if user
       session[:user_id] = user.id
-      redirect_to root_url, :notice => "Logged in!"
+      redirect_to user_path(user.id), :notice => "Logged in!"
     else
       flash.now.alert = "Invalid email or password"
       render "new"
@@ -15,6 +19,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, :notice => "Logged out!"
+    redirect_to root_path :notice => "Logged out!"
   end
 end

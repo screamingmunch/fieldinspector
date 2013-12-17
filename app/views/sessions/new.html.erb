@@ -1,13 +1,41 @@
-<h1>Log in</h1>
 
-<%= form_tag sessions_path do %>
-  <p>
-    <%= label_tag :email %><br />
-    <%= text_field_tag :email, params[:email] %>
-  </p>
-  <p>
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
-  </p>
-  <p class="button"><%= submit_tag "Log in" %></p>
-<% end %>
+<div class="splash">
+
+  <div class="logo">
+    <h1>Field Inspector</h1>
+    <h3>A Mobile Clipboard</h3>
+  </div>
+
+  <div class="info">
+    <%= image_tag 'constuct2.jpg' %>
+  </div>
+  <div class="start">
+    <span class="entypo-up-open-big"></span>
+  </div>
+
+</div>
+
+<div class="color-strip"></div>
+
+<div class='signin'>
+
+  <div class="logo">
+    <h1>Field Inspector</h1>
+  </div>
+
+  <div class="form">
+  <%= form_for(:session, url: sessions_path) do |f| %>
+    <div class="input"><%= f.text_field :email, :placeholder => "Email" %></div>
+    <div class="input-last"><%= f.password_field :password, :placeholder => "Password" %></div>
+  </div>
+  <%= f.submit "Log in", class: "btn btn-warning" %>
+  <% end %>
+  <%= link_to "Sign up now!", sign_up_path, class: 'btn btn-secondary' %>
+
+</div>
+
+
+<div class="add-to-home">
+  <p>Add to home screen for a truly native experience!</p>
+  <span class="entypo-down-open-big"></span>
+</div>

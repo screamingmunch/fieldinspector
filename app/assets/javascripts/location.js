@@ -59,6 +59,10 @@ $(function(){
     $('#location').append('<li id="lat">'+lat+'</li>');
     $('#location').append('<li id="lng">'+lng+'</li>');
     $('#location').append('<li id="address">'+address+'</li>');
+    $('#current_location').append(address);
+    $('#current_lat').append(lat);
+    $('#current_lng').append(lng);
+
     //console.log(city)
 
     postRequest(lat, lng, city, address) // POST these params to my backend locations table
@@ -84,7 +88,11 @@ $(function(){
         url: "/locations/"+data.id+"/forecasts",
       }).done(function(response){
         // console.log(this);
-        // console.log(response);
+        console.log(response);
+        // debugger
+        $('#current_weather').append(response[0].weather);
+        $('#current_inspection').append(response[0].inspection.toString());
+
         for(var i= 0; i < Object.keys(response).length; i++){
           console.log(response[i]);
           $('#weather').append('<li>' + response[i].forecast_day + ': ' + response[i].weather + '</li>');
@@ -96,7 +104,10 @@ $(function(){
     }) // end POST ajax call
   } // end postRequest
 
-getLocation();
+if(gon.current_user){
+  getLocation();
+}
+
 // setTimeout(function(){console.log(this)}, 2000);
 });
 

@@ -1,0 +1,432 @@
+@import "inputs";
+
+/*slideup*/
+@keyframes "slideup" {
+ from {
+    margin-top: 0;
+ }
+ to {
+    margin-top: -150%;
+ }
+
+}
+
+@-moz-keyframes slideup {
+ from {
+   margin-top: 0;
+ }
+ to {
+   margin-top: -150%;
+ }
+
+}
+
+@-webkit-keyframes "slideup" {
+ from {
+   margin-top: 0;
+ }
+ to {
+   margin-top: -150%;
+ }
+
+}
+
+@-ms-keyframes "slideup" {
+ from {
+   margin-top: 0;
+ }
+ to {
+   margin-top: -150%;
+ }
+
+}
+
+@-o-keyframes "slideup" {
+ from {
+   margin-top: 0;
+ }
+ to {
+   margin-top: -150%;
+ }
+
+}
+
+/*slidein-left*/
+@keyframes "slidein-left" {
+ from {
+    margin-left: -85%;
+ }
+ to {
+    margin-left: 0;
+ }
+
+}
+
+@-moz-keyframes slidein-left {
+ from {
+   margin-left: -85%;
+ }
+ to {
+   margin-left: 0;
+ }
+
+}
+
+@-webkit-keyframes "slidein-left" {
+ from {
+   margin-left: -85%;
+ }
+ to {
+   margin-left: 0;
+ }
+
+}
+
+@-ms-keyframes "slidein-left" {
+ from {
+   margin-left: -85%;
+ }
+ to {
+   margin-left: 0;
+ }
+
+}
+
+@-o-keyframes "slidein-left" {
+ from {
+   margin-left: -85%;
+ }
+ to {
+   margin-left: 0;
+ }
+
+}
+
+
+/*slideout*/
+@keyframes "slideout-left" {
+ from {
+    margin-left: 0;
+ }
+ to {
+    margin-left: -85%;
+ }
+
+}
+
+@-moz-keyframes slideout-left {
+ from {
+   margin-left: 0;
+ }
+ to {
+   margin-left: -85%;
+ }
+
+}
+
+@-webkit-keyframes "slideout-left" {
+ from {
+   margin-left: 0;
+ }
+ to {
+   margin-left: -85%;
+ }
+
+}
+
+@-ms-keyframes "slideout-left" {
+ from {
+   margin-left: 0;
+ }
+ to {
+   margin-left: -85%;
+ }
+
+}
+
+@-o-keyframes "slideout-left" {
+ from {
+   margin-left: 0;
+ }
+ to {
+   margin-left: -85%;
+ }
+
+}
+
+// slideout-right
+
+@keyframes "slideout-right" {
+ from {
+    margin-right: 0;
+ }
+ to {
+    margin-right: -85%;
+ }
+
+}
+
+@-moz-keyframes slideout-right {
+ from {
+   margin-right: 0;
+ }
+ to {
+   margin-right: -85%;
+ }
+
+}
+
+@-webkit-keyframes "slideout-right" {
+ from {
+   margin-right: 0;
+ }
+ to {
+   margin-right: -85%;
+ }
+
+}
+
+@-ms-keyframes "slideout-right" {
+ from {
+   margin-right: 0;
+ }
+ to {
+   margin-right: -85%;
+ }
+
+}
+
+@-o-keyframes "slideout-right" {
+ from {
+   margin-right: 0;
+ }
+ to {
+   margin-right: -85%;
+ }
+
+}
+
+// slidein-right
+
+@keyframes "slidein-right" {
+ from {
+    margin-right: -85%;
+ }
+ to {
+    margin-right: 0;
+ }
+
+}
+
+@-moz-keyframes slidein-right {
+ from {
+   margin-right: -85%;
+ }
+ to {
+   margin-right: 0;
+ }
+
+}
+
+@-webkit-keyframes "slidein-right" {
+ from {
+   margin-right: -85%;
+ }
+ to {
+   margin-right: 0;
+ }
+
+}
+
+@-ms-keyframes "slidein-right" {
+ from {
+   margin-right: -85%;
+ }
+ to {
+   margin-right: 0;
+ }
+
+}
+
+@-o-keyframes "slidein-right" {
+ from {
+   margin-right: -85%;
+ }
+ to {
+   margin-right: 0;
+ }
+
+}
+
+// color transition
+@keyframes "color" {
+ 0% {
+    background: $red;
+ }
+ 50% {
+    background: darken($red, 10%);
+ }
+ 100% {
+    background: $red;
+ }
+
+}
+
+@-moz-keyframes color {
+ 0% {
+    background: $red;
+ }
+ 50% {
+    background: darken($red, 10%);
+ }
+ 100% {
+    background: $red;
+ }
+
+}
+
+@-webkit-keyframes "color" {
+ 0% {
+    background: $red;
+ }
+ 50% {
+    background: darken($red, 10%);
+ }
+ 100% {
+    background: $red;
+ }
+
+}
+
+@-ms-keyframes "color" {
+ 0% {
+    background: $red;
+ }
+ 50% {
+    background: darken($red, 10%);
+ }
+ 100% {
+    background: $red;
+ }
+
+}
+
+@-o-keyframes "color" {
+ 0% {
+    background: $red;
+ }
+ 50% {
+    background: darken($red, 10%);
+ }
+ 100% {
+    background: $red;
+ }
+
+}
+
+// show-create-bar
+
+@keyframes "show-create" {
+ from {
+    bottom: -100px;
+ }
+ to {
+    bottom: 0;
+ }
+
+}
+
+@-moz-keyframes show-create {
+ from {
+   bottom: -100px;
+ }
+ to {
+   bottom: 0;
+ }
+
+}
+
+@-webkit-keyframes "show-create" {
+ from {
+   bottom: -100px;
+ }
+ to {
+   bottom: 0;
+ }
+
+}
+
+@-ms-keyframes "show-create" {
+ from {
+   bottom: -100px;
+ }
+ to {
+   bottom: 0;
+ }
+
+}
+
+@-o-keyframes "show-create" {
+ from {
+   bottom: -100px;
+ }
+ to {
+   bottom: 0;
+ }
+
+}
+
+// tracker-up
+
+@keyframes "tracker-up" {
+ from {
+    margin-top: 100%;
+ }
+ to {
+    margin-top: 0;
+ }
+
+}
+
+@-moz-keyframes tracker-up {
+ from {
+   margin-top: 100%;
+ }
+ to {
+   margin-top: 0;
+ }
+
+}
+
+@-webkit-keyframes "tracker-up" {
+ from {
+   margin-top: 100%;
+ }
+ to {
+   margin-top: 0;
+ }
+
+}
+
+@-ms-keyframes "tracker-up" {
+ from {
+   margin-top: 100%;
+ }
+ to {
+   margin-top: 0;
+ }
+
+}
+
+@-o-keyframes "tracker-up" {
+ from {
+   margin-top: 100%;
+ }
+ to {
+   margin-top: 0;
+ }
+
+}
+
+
+

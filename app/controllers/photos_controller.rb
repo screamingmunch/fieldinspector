@@ -20,7 +20,7 @@ class PhotosController < ApplicationController
     # @photo = Photo.create(params.slice :image)
     # render json: @photo
     @photo = Photo.create(params[:photo])
-    redirect_to root_path
+    redirect_to home_index_path
   end
 
   def show

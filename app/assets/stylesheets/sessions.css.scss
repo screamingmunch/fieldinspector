@@ -1,3 +1,117 @@
-// Place all the styles related to the sessions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*
+  This CSS Page is based on templates created by Ian Yang
+*/
+
+@import "inputs";
+
+@media screen and (max-width: 600px) {
+  .header .logo {
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.6em;
+    color: white;
+    font-weight: 500;
+    width: 70%;
+    position: absolute;
+    text-align: center;
+    left: 15%;
+    text-shadow: 0px 1px 1px darken(red, 10%);
+  }
+
+  .logo h1{
+    color: darken(red, 10%);
+    font-size: 1.3em;
+    font-family: 'Titillium Web', sans-serif;
+    margin: 0;
+    text-shadow: 0px 1px 1px lighten(red, 5%);
+  }
+
+  .menu {
+  z-index: 99999999;
+  position: relative;
+  float: left;
+  width: 85%;
+  height: 100%;
+  min-height: 480px;
+  margin-left: -85%;
+  background-image: url(dark_dotted.png);
+  }
+
+  .slidein-left {
+    -webkit-animation: slidein-left .3s;
+    -moz-animation: slidein-left .3s;
+    -ms-animation: slidein-left .3s;
+    -o-animation: slidein-left .3s;
+    animation: slidein-left .3s;
+    margin-left: 0;
+  }
+
+  .slideout-left {
+    -webkit-animation: slideout-left .2s;
+    -moz-animation: slideout-left .2s;
+    -ms-animation: slideout-left .2s;
+    -o-animation: slideout-left .2s;
+    animation: slideout-left .2s;
+    margin-left: -85%;
+  }
+
+/*.profile-image {
+  display: block;
+  margin: 10% auto 5% auto;
+  width: 80px;
+  height: 80px;
+  @include border-radius(50%);
+  overflow: hidden;
+  border: 2px solid white;
+}*/
+
+.profile-image img {
+  width: 100%;
+}
+
+.menu .nav {
+  width: 100%;
+  position: absolute;
+  bottom: 15%;
+}
+
+.menu .nav a {
+  display: block;
+  text-align: center;
+  width: 100%;
+  font-size: 1.4em;
+  line-height: 40px;
+  color: white;
+  font-weight: 100;
+  &:hover {
+    background: red;
+  }
+  &:active {
+    background: red;
+  }
+  &:link {
+    color: white;
+  }
+  &:visited {
+    color: white;
+  }
+}
+
+.slideout-right {
+  -webkit-animation: slideout-right .2s;
+  -moz-animation: slideout-right .2s;
+  -ms-animation: slideout-right .2s;
+  -o-animation: slideout-right .2s;
+  animation: slideout-right .2s;
+  margin-right: -85%;
+}
+
+.slidein-right {
+  -webkit-animation: slidein-right .3s;
+  -moz-animation: slidein-right .3s;
+  -ms-animation: slidein-right .3s;
+  -o-animation: slidein-right .3s;
+  animation: slidein-right .3s;
+  margin-right: 0;
+}
+}

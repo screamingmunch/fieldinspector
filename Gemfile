@@ -21,8 +21,11 @@ gem 'unf'
 gem 'nokogiri'
 gem 'typhoeus'
 gem 'bcrypt-ruby', :require => 'bcrypt'
-# gem 'gon'
+gem 'gon'
 # gem 'unicorn-rails'
+
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'turbolinks'
 
 
 group :development, :test do

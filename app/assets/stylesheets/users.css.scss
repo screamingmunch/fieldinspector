@@ -1,3 +1,193 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*
+  This CSS Page is based on templates created by Ian Yang
+*/
+@import "inputs";
+
+.slideup {
+  animation: slideup .5s;
+  -webkit-animation: slideup .5s;
+  -moz-animation: slideup .5s;
+  -ms-animation: slideup .5s;
+  -o-animation: slideup .5s;
+  margin-top: -150%;
+  /*transform: translateY(-150%);*/
+}
+
+.splash {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: lighten($charcoal,70%);
+  z-index: 999999999999999999;
+}
+
+.splash .logo {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
+
+.splash .logo h1 {
+  font-size: 4.2em;
+  color: darken($charcoal, 10%);
+  text-shadow: 0 1px 2px lighten($charcoal, 80%);
+  line-height: 65px;
+}
+
+.splash .logo h3 {
+  font-size: 1.4em;
+  font-weight: 300;
+}
+
+.splash .info {
+  width: 100%;
+  display: block;
+  height: 240px;
+  overflow: hidden;
+  text-align: center;
+  color: $white;
+  font-size: 2.4em;
+  border-bottom: 5px solid $red;
+}
+
+.splash .info img {
+  height: 100%;
+}
+
+.start {
+  width: 100%;
+  height: 60px;
+  position: absolute;
+  bottom: 30px;
+  text-align: center;
+  color: darken($charcoal, 10%);
+  text-shadow: 0 1px 2px lighten($charcoal, 80%);
+}
+
+.start .entypo-up-open-big {
+  font-size: 3em;
+}
+
+.color-strip {
+  width: 100%;
+  height: 5px;
+  background: $red;
+  border-bottom: 2px solid darken($red, 10%);
+}
+
+.signin {
+  width: 100%;
+  display: none;
+  margin: 5% auto 0 auto;
+  overflow: hidden;
+}
+
+.signin .logo {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.signin .logo h1 {
+  font-size: 3.8em;
+  color:$charcoal;
+  text-shadow: 0 1px 1px #fff;
+}
+
+/*.signin .session-dialog-box {
+  display: inline-block;
+  width: 2em;
+  font-size: 1.4em;
+  line-height: 34px;
+}
+
+.facebook {
+  text-align: center;
+}
+
+.facebook .profile-image {
+  margin: 0 auto;
+}
+
+.facebook h3 {
+  font-size: 1.4em;
+}*/
+
+.add-to-home {
+  width: 70%;
+  height: 60px;
+  position: fixed;
+  left: 15%;
+  bottom: 20px;
+  text-align: center;
+  font-size: 1.2em;
+  @include border-radius(5px);
+  background: $white;
+  border: 1px solid $grey;
+}
+
+// user container
+
+.user {
+  width: 100%;
+  height: -webkit-calc(100% - 52px);
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.score {
+  width: 100%;
+  text-align: center;
+  font-size: 1.4em;
+}
+
+.form.billing .input,
+.form.billing .input-last {
+  display: none;
+}
+
+/*// messenger
+
+.user .logo {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.user .logo h1 {
+  font-size: 3em;
+  color:$charcoal;
+  text-shadow: 0 1px 1px #fff;
+}
+
+.messenger-promo {
+  width: 80%;
+  display: block;
+  margin: 5% auto;
+  height: 120px;
+  border-top: 2px solid $red;
+}
+
+.messenger-promo div {
+  width: 29%;
+  float: left;
+  text-align: center;
+  margin-top: 30px;
+  padding: 2%;
+}
+
+.messenger-promo div:nth-child(2) {
+  border-left: 1px solid $grey;
+  border-right: 1px solid $grey;
+}
+
+.messenger-promo div h1 {
+  font-size: 1.2em;
+}
+
+*/

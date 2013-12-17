@@ -93,6 +93,9 @@ GEM
       nokogiri (~> 1.5)
       ruby-hmac
     formatador (0.2.4)
+    gon (4.1.1)
+      actionpack (>= 2.3.0)
+      json
     hashie (2.0.5)
     hike (1.2.3)
     httpauth (0.2.0)
@@ -220,6 +223,8 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    turbolinks (1.3.0)
+      coffee-rails
     typhoeus (0.6.5)
       ethon (~> 0.6.1)
     tzinfo (0.3.38)
@@ -245,6 +250,7 @@ DEPENDENCIES
   eco
   ejs
   fog
+  gon
   jquery-rails
   lodash-rails
   nokogiri
@@ -262,6 +268,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   sidekiq
+  turbolinks
   typhoeus
   uglifier (>= 1.0.3)
   unf
