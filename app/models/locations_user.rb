@@ -4,4 +4,5 @@ class LocationsUser < ActiveRecord::Base
   belongs_to :user
 
   validates_uniqueness_of :location_id, :scope => :user_id
+  # this validation prevents a duplicate creation of user-location associations
 end

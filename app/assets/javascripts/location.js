@@ -1,9 +1,22 @@
 $(function(){
 
+  //UPDATE LOC BUTTON!!
+  $("#updateLoc").click(function(){
+    $.cookie("location", undefined);
+    $.cookie("city",undefined);  //20 minutes
+    $.cookie("address", undefined);
+    $('#current_location').empty();
+    $('#current_lat').empty();
+    $('#current_lng').empty();
+    $('#current_weather').empty();
+    $('#current_inspection').empty();
+    getLocation();
+  })
+
+
   // JS:  gets currentPosition from user device.
   // If navigator.geolocation exist, sePosition function gets called
   // otherwise, askPosition function is executed
-
   var getLocation = function(){
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(setPosition, askPosition);
@@ -58,9 +71,10 @@ $(function(){
 
 
           displayLocation(lat, lng, city, address);  //perform callback
-
           }
         }); //end ajax request to google map api
+
+    //  the conditional with the cookie here is now taken cared of in the backend "locations_user" model validations
     // } else {
     //       var city =  $.cookie("city")
     //       var address = $.cookie("address")
@@ -77,12 +91,11 @@ $(function(){
     $('#location').append('<li id="lat">'+lat+'</li>');
     $('#location').append('<li id="lng">'+lng+'</li>');
     $('#location').append('<li id="address">'+address+'</li>');
-    $('#current_location').append(address);
-    $('#current_lat').append(lat);
-    $('#current_lng').append(lng);
+    $('#current_location').append('Current Location:' + address);
+    $('#current_lat').append('Latitude:' + lat);
+    $('#current_lng').append('Longitude' + lng);
 
     //console.log(city)
-
     postRequest(lat, lng, city, address); // POST these params to my backend locations table
   }
 
@@ -110,8 +123,8 @@ $(function(){
         // console.log(this);
         console.log(response);
         // debugger
-        $('#current_weather').append(response[0].weather);
-        $('#current_inspection').append(response[0].inspection.toString());
+        $('#current_weather').append('Local Forecast: '+ response[0].weather);
+        $('#current_inspection').append('Site Inspection Required? '+ response[0].inspection.toString());
 
         for(var i= 0; i < Object.keys(response).length; i++){
           console.log(response[i]);
@@ -129,28 +142,25 @@ $(function(){
 
 // check to see if user is logged in before calling any location functions:
 
-if(gon.current_user){
-
+if(gon.current_user && window.location.href.match(/\/users\/\d*/)){
+  console.log( "the coookie address is ", $.cookie("location"))
   // if cookie is empty perform the getLocation() function
   if($.cookie("location") === undefined){
     console.log(gon.current_user);
     getLocation();
 
   }else{
-    console.log("ther loc is ", $.cookie("location"));
     // otherwise, present a dialog box asking the user whether the current location
     // is something they want to use, if "ok" -> uses getAddress(loc) is passed with the location data stored in the cookie
     // if "cancel" is pressed, call getLocation() again to get new
-    var dialog = confirm("Use this location? "+ $.cookie("address"));
-    if (dialog == true){
+
       var loc = $.cookie("location");
-       loc = loc.split(",");
-       getAddress(loc[0],loc[1]);
-    } else {
-      getLocation();
-    };
+      loc = loc.split(",");
+      getAddress(loc[0],loc[1]);
+
   }; //end if cookie is empty
 }else{
+  // $.cookie("address", undefined)
   console.log("not logged in")
 }; // end gon.current_user
 
