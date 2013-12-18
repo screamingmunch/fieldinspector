@@ -8,6 +8,14 @@
 <div id="current_inspection">Site Inspection Required? </div>
 
 <div id="job_sites">My Active Jobs:
+  <% @locations.each do |location| %>
+  <li>
+    <a href="/locations/<%=location.id %>"><h3><%= location.project_name %>: <%=link_to "delete", location_path(location.id), method: :delete, confirm: "Do you want to permanently delete this location?" %></br></h3>
+    <%= location.address %></a>
+  </li>
+  <% end %>
+  <br>
+  <a href="/locations/new">Create a new Project</a>
 
 </div>
 

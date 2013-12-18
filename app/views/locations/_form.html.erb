@@ -1,0 +1,11 @@
+<%= form_for @location, html: {class: "location_form"} do |f| %>
+  <%= f.label :project_name %>
+  <%= f.text_field :project_name %>
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+  <%= f.label :latitude %>
+  <%= f.text_field :latitude %>
+  <%= f.label :longitude %>
+  <%= f.text_field :longitude %>
+  <%= f.submit "Update" %>
+<% end %>

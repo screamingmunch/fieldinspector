@@ -1,0 +1,26 @@
+<div id="user_nav">
+    <% if current_user %>
+      Currently Logged in as <%= current_user.first_name %>.
+      <%= link_to "Log out", log_out_path %>
+    <% else %>
+      <%= link_to "Sign up", sign_up_path %> or
+      <%= link_to "log in", log_in_path %>
+    <% end %>
+</div>
+<br>
+Project name:<%=@location.project_name%>
+<% if current_user %>
+  <%= link_to "edit", edit_location_path(@location)%> </br>
+<% end %>
+Address: <%=@location.address %></br>
+
+<br>
+Users associated with this project:
+<%@users.each do |user|%>
+<% if current_user %>
+  <li><a href="/users/<%=user.id%>"><%=user.first_name%> <%=user.last_name%> (<%=user.company%>)</li></a>
+<% else %>
+  <li><%=user.first_name%> <%=user.last_name%> (<%=user.company%>)</li>
+<% end %>
+
+<% end %>

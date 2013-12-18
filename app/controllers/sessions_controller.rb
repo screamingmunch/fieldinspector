@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
+  before_filter { gon.current_user = current_user }
   def new
-    gon.current_user = current_user
     # redirect_to '/users/' + current_user.id.to_s if logged_in?
     # redirect_to '/home' unless request.user_agent =~ /Mobile|webOS/
   end
@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
       flash.now.alert = "Invalid email or password"
       render "new"
     end
+    # binding.pry
   end
 
   def destroy

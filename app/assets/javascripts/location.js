@@ -105,7 +105,10 @@ $(function(){
   } // end postRequest
 
 if(gon.current_user){
+  console.log(gon.current_user);
   getLocation();
+}else{
+  console.log("not logged in.");
 }
 
 // setTimeout(function(){console.log(this)}, 2000);

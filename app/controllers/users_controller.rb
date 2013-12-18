@@ -13,9 +13,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    # gon.current_user = current_user
     @user = User.find(params[:id])
-    gon.current_user = current_user
-    # @locations = Location.find()
+    @locations = @user.locations
   end
 
 end
