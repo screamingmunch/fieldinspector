@@ -18,8 +18,8 @@ $(function(){
     lat += Math.random() / 100;
     lng += Math.random() / 100;
 
-    var latlng = lat + "," + lng;
-    $.cookie("location", latlng, {expires: 1/(24*60*3)})
+    var latlng = lat.toFixed(5) + "," + lng.toFixed(5);
+    $.cookie("location", latlng, {expires: 20/(24*60)})
     getAddress(lat.toFixed(5), lng.toFixed(5)) //toFixed(5) up to 5 sigfigs
   }
 
@@ -34,7 +34,7 @@ $(function(){
 
     var latlng = lat + "," + lng;
 
-    if($.cookie("address") === undefined && $.cookie("city") === undefined){
+    // if($.cookie("address") === undefined && $.cookie("city") === undefined){
       var request = $.ajax({
         type: "GET",
         url: "http://maps.googleapis.com/maps/api/geocode/json",
@@ -61,11 +61,11 @@ $(function(){
 
           }
         }); //end ajax request to google map api
-    } else {
-          var city =  $.cookie("city")
-          var address = $.cookie("address")
-          displayLocation(lat, lng, city, address);
-    }
+    // } else {
+    //       var city =  $.cookie("city")
+    //       var address = $.cookie("address")
+    //       displayLocation(lat, lng, city, address);
+    // }
 
 
   } // end getAddress function
@@ -83,10 +83,12 @@ $(function(){
 
     //console.log(city)
 
-    postRequest(lat, lng, city, address) // POST these params to my backend locations table
+    postRequest(lat, lng, city, address); // POST these params to my backend locations table
   }
 
   var postRequest = function(lat, lng, city, address){
+    console.log(lat);
+    console.log(lng);
     $.ajax({
       type: "POST",
       url:  "/locations", //locations controller

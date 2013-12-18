@@ -8,19 +8,27 @@
     <% end %>
 </div>
 <br>
-Project name:<%=@location.project_name%>
-<% if current_user %>
-  <%= link_to "edit", edit_location_path(@location)%> </br>
-<% end %>
-Address: <%=@location.address %></br>
+<div id="location_project">
+  Project name:<%=@location.project_name%>
+  <% if current_user %>
+    <%= link_to "edit", edit_location_path(@location)%> </br>
+  <% end %>
+  Address: <%=@location.address %></br>
+</div>
+
+<div id="location_reports">
+  <% %>
+</div>
 
 <br>
-Users associated with this project:
-<%@users.each do |user|%>
-<% if current_user %>
-  <li><a href="/users/<%=user.id%>"><%=user.first_name%> <%=user.last_name%> (<%=user.company%>)</li></a>
-<% else %>
-  <li><%=user.first_name%> <%=user.last_name%> (<%=user.company%>)</li>
-<% end %>
+<div id="location_users">
+  Users associated with this project:
+  <%@users.each do |user|%>
+    <% if current_user %>
+      <li><a href="/users/<%=user.id%>"><%=user.first_name%> <%=user.last_name%> (<%=user.company%>)</li></a>
+    <% else %>
+      <li><%=user.first_name%> <%=user.last_name%> (<%=user.company%>)</li>
+    <% end %>
 
-<% end %>
+  <% end %>
+</div>

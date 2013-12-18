@@ -11,9 +11,29 @@ class LocationsController < ApplicationController
 
   def create
     gon.current_user = current_user
-    @location = Location.where(params[:location]).first_or_create
-    @location.users << current_user
-    render json: @location.to_json
+    # @location = Location.where(params[:location]).first_or_create
+    binding.pry
+
+    if Location.find_by_address(params[:location][:address])
+      puts '*'*20
+      puts "it exists!"
+      @location = Location.find_by_address(params[:location][:address])
+    else
+      puts '*'*20
+      puts "go create it sucker"
+      @location = Location.create(params[:location])
+
+      # @location = Location.where(params[:location]).create
+    end
+    # if Location.where(params[:location][:address])
+    #   @location = Location.where(params[:location][:address]).first
+    # else
+    #   @location = Location.where(params[:location]).create
+    # end
+    unless @location.users.include?(current_user)
+      @location.users << current_user
+    end
+    render json: @location
   end
 
   def show
@@ -39,7 +59,7 @@ class LocationsController < ApplicationController
       @location = Location.delete(params[:id])
     else
       @location.users.find(current_user.id)
-      LocationUser.find_by_location_id_and_user_id(@location.id, current_user.id).delete
+      LocationsUser.find_by_location_id_and_user_id(@location.id, current_user.id).delete
     end
     redirect_to "/users/#{current_user.id}"
   end
