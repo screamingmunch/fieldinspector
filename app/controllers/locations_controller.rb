@@ -43,7 +43,7 @@ class LocationsController < ApplicationController
 
   def destroy
     @location = Location.find(params[:id])
-    binding.pry
+    # binding.pry
     if @location.users.include?(current_user) && @location.users.length == 1
       LocationsUser.find_by_location_id_and_user_id(@location.id, current_user.id).delete
       @location = Location.delete(params[:id])

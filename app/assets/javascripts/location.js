@@ -95,8 +95,37 @@ $(function(){
     $('#current_lat').append('Latitude:' + lat);
     $('#current_lng').append('Longitude' + lng);
 
-    //console.log(city)
-    postRequest(lat, lng, city, address); // POST these params to my backend locations table
+    //Creates a new project if the OK button is clicked
+    $('#create_new_loc').click(function(){
+      postRequest(lat, lng, city, address); // POST these params to my backend locations table
+      $('#create_new_loc').hide();
+    });
+
+    //get forecaset
+    $('#get_forecast').click(function(){
+      $.ajax({
+        type: "GET",
+        url: "/locations/forecast_json",
+        data: {
+          lat: lat,
+          lng: lng
+        }
+      }).done(function(response){
+        // console.log(this);
+        console.log(response);
+        // debugger
+        $('#current_weather').append('Local Forecast: '+ response[0].weather);
+        $('#current_inspection').append('Site Inspection Required? '+ response[0].inspection.toString());
+        $('#get_forecast').hide();
+        for(var i= 0; i < Object.keys(response).length; i++){
+          console.log(response[i]);
+          $('#weather').append('<li>' + response[i].forecast_day + ': ' + response[i].weather + '</li>');
+          if (response[i].inspection == true) {
+            $('#weather').append('<li> Inspection required on :'+ response[i].forecast_day + '</li>');
+          };
+        };
+    }) // end .done function
+    }) // end GET get_forecast ajax call
   }
 
   var postRequest = function(lat, lng, city, address){

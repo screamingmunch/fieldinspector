@@ -4,7 +4,8 @@ FieldInspector::Application.routes.draw do
   get "sign_up" => "users#new", :as => "sign_up"
   get "log_in"  => "sessions#new", :as => "log_in"
   get "log_out" => "sessions#destroy", :as => "log_out"
-  get 'locations/json', to: 'locations#location_json'
+  get "locations/json", to: "locations#location_json"
+  get "/locations/forecast_json", to: "forecasts#forecast_json"
 
   #   match 'products/:id' => 'catalog#view'
 
