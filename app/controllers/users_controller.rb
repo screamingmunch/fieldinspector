@@ -6,6 +6,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      session[:user_id] = @user.id #current_user needs the session[user_id] to be defined beforehand
+      binding.pry
+      gon.current_user = current_user.id
       redirect_to user_path(@user.id), :notice => "Signed up!"
     else
       render "new"

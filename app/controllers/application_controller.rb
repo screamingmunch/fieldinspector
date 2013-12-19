@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user
 
-  before_filter { gon.current_user = current_user }
+  # before_filter { gon.current_user = current_user }
   # this will make sure that current_user is gon.current_user
   # is available to each and every route
 
