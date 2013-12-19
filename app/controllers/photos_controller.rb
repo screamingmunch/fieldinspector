@@ -4,12 +4,12 @@ class PhotosController < ApplicationController
   def index
     @photos = Photo.all || "photos"
     @uploader = Photo.new.image
-    @uploader.success_action_redirect = new_location_report_photo_url
+    @uploader.success_action_redirect = new_photo_url
   end
 
   def new
-    @location = Location.find(params[:location_id])
-    @report = Report.find(params[:report_id])
+    # @location = Location.find(params[:location_id])
+    # @report = Report.find(params[:report_id])
     @photo = Photo.new(key: params[:key])
     # @photo[:report_id] = params[:report_id]
     # @photo[:user_id] = current_user.id

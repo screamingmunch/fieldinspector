@@ -10,7 +10,6 @@ class Photo < ActiveRecord::Base
 
 
   def image_name
-
     File.basename(image.path || image.filename) if image
   end
 

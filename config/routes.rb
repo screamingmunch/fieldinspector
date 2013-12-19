@@ -14,7 +14,7 @@ FieldInspector::Application.routes.draw do
   #     resources :comments, :sales
   #     resource :seller
   #   end
-
+  resources :photos
   resources :locations do
     resources :forecasts, only: [:index]
     resources :reports do
@@ -25,5 +25,6 @@ FieldInspector::Application.routes.draw do
   resources :users
   resources :home, only: [:index]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :photos
 
 end
