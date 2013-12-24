@@ -31,7 +31,7 @@ $(function(){
     lat += Math.random() / 100;
     lng += Math.random() / 100;
 
-    var latlng = lat.toFixed(5) + "," + lng.toFixed(5);
+    var latlng = lat + "," + lng;
     $.cookie("location", latlng, {expires: 20/(24*60)})
     getAddress(lat.toFixed(5), lng.toFixed(5)) //toFixed(5) up to 5 sigfigs
   }
@@ -61,16 +61,21 @@ $(function(){
             console.log("No geocode results");
           } else {
             // console.log(response);
-            city = response["results"][0]["address_components"][3]["long_name"];
             address = response["results"][0]["formatted_address"];
+            street = response["results"][0]["address_components"][0]["long_name"] + ' ' + response["results"][0]["address_components"][1]["long_name"];
+            city = response["results"][0]["address_components"][3]["long_name"];
+            state = response["results"][0]["address_components"][5]["long_name"];
+            zip = response["results"][0]["address_components"][7]["long_name"];
           };
           console.log("address", address)
 
           $.cookie("city", city, {expires: 20/(24*60)} )  //20 minutes
           $.cookie("address", address, {expires: 20/(24*60)} )  //20 minutes
+          $.cookie("state", state, {expires: 20/(24*60)} )  //20 minutes
+          $.cookie("zip", zip, {expires: 20/(24*60)} )  //20 minutes
 
 
-          displayLocation(lat, lng, city, address);  //perform callback
+          displayLocation(lat, lng, address, street, city, state, zip);  //perform callback
           }
         }); //end ajax request to google map api
 
@@ -84,7 +89,7 @@ $(function(){
 
   } // end getAddress function
 
-  var displayLocation = function(lat, lng, city, address) {
+  var displayLocation = function(lat, lng, address, street, city, state, zip) {
     console.log("the address is ", address)
     la = '<li id="city">'+city+'</li>'
     $('#location').append(la);
@@ -92,12 +97,13 @@ $(function(){
     $('#location').append('<li id="lng">'+lng+'</li>');
     $('#location').append('<li id="address">'+address+'</li>');
     $('#current_location').append('Current Location:' + address);
-    $('#current_lat').append('Latitude:' + lat);
-    $('#current_lng').append('Longitude' + lng);
+    $('#current_lat').append(typeof(lat));
+    $('#current_lat').append('Latitude:' + parseFloat(lat).toFixed(5));
+    $('#current_lng').append('Longitude' + parseFloat(lng).toFixed(5));
 
     //Creates a new project if the OK button is clicked
     $('#create_new_loc').click(function(){
-      postRequest(lat, lng, city, address); // POST these params to my backend locations table
+      postRequest(lat, lng, address, street, city, state, zip); // POST these params to my backend locations table
       $('#create_new_loc').hide();
     });
 
@@ -128,7 +134,7 @@ $(function(){
     }) // end GET get_forecast ajax call
   }
 
-  var postRequest = function(lat, lng, city, address){
+  var postRequest = function(lat, lng, address, street, city, state, zip){
     console.log(lat);
     console.log(lng);
     $.ajax({
@@ -138,7 +144,10 @@ $(function(){
         latitude: lat,
         longitude: lng,
         address: address,
-        city: city
+        street: street,
+        city: city,
+        state: state,
+        zip: zip
         }
       }
     }).done(function(data){

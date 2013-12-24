@@ -18,24 +18,29 @@ task :fetch_conditions => :environment do
     data.css("ul.point-forecast-7-day li").each do |day|
       time = day.at_css("span").text
       weather = day.xpath('text()').to_s.strip
-      chance_of_rain = weather.scan(/100%/) || weather.scan(/\d\d%/)
-      unless chance_of_rain.empty?
-        if chance_of_rain == ["100%"]
-          chance = 100
+      if weather.scan(/100%/).empty?
+        if !weather.scan(/\d\d%/).empty?
+          chance_of_rain = weather.scan(/\d\d%/)
+          chance = chance_of_rain.join('').to_i
         else
-          chance = chance_of_rain[0].scan(/\d\d/).join('').to_i
+          chance_of_rain = []
+          chance = 0
         end
-      end
-
-      if !chance_of_rain.empty? && chance >= 50
-        inspection = true
       else
-        inspection = false
+        chance_of_rain = weather.scan(/100%/)
+        chance = 100
       end
-      forecast[i] = {:forecast_day => time, :weather => weather, :inspection => inspection}
-      i += 1
+        if !chance_of_rain.empty? && chance >= 50
+          inspection = true
+        else
+          inspection = false
+        end
+        @forecast[i] = {:forecast_day => time, :weather => weather, :inspection => inspection}
+        i += 1
     end
     puts forecast
+    #right now the rake task just outputs forecast in console..
+    #need to write a function that triggers action mailer when rake task returns inspection of true
   end
 end
 

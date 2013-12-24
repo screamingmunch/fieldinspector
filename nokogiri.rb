@@ -22,8 +22,13 @@ data.css("ul.point-forecast-7-day li").each do |day|
   time = day.at_css("span").text
   weather = day.xpath('text()').to_s.strip
   forecast[time] = weather
+
 end
+
+
 puts data
+puts "*******************"
+puts data.css("p.myforecast-current-lrg").xpath('text()').to_s
 puts forecast
 
 

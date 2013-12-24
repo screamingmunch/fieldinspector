@@ -14,7 +14,8 @@ FieldInspector::Application.routes.draw do
   #     resources :comments, :sales
   #     resource :seller
   #   end
-  resources :photos
+
+  # resources :photos  #use this for heroku testing until all nested resources are working
   resources :locations do
     resources :forecasts, only: [:index]
     resources :reports do
@@ -23,8 +24,8 @@ FieldInspector::Application.routes.draw do
   end
 
   resources :users
-  resources :home, only: [:index]
+  # resources :home, only: [:index]
   resources :sessions, only: [:new, :create, :destroy]
-  resources :photos
+  # resources :photos
 
 end

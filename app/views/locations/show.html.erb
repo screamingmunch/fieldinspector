@@ -9,12 +9,27 @@
 </div>
 <br>
 <div id="location_project">
-  Project name:<%=@location.project_name%>
+  <h2>Project name: <%=@location.project_name%></h2>
+  Address: <%=@location.address %></br>
   <% if current_user %>
     <%= link_to "edit", edit_location_path(@location)%> </br>
   <% end %>
-  Address: <%=@location.address %></br>
 </div>
+<!-- <div id="current_weather"></div>
+<div id="current_inspection"></div>
+<button id="get_forecast"> Get Current Forecast </button> -->
+<br>
+<h3>Weather Info:</h3>
+<% @forecast.each do |forecast| %>
+
+<p>Day: <%= forecast[1][:forecast_day] %> </p>
+<p>Forecast: <%= forecast[1][:weather] %> </p>
+<p>Inspection Required?: <%= forecast[1][:inspection] %> </p>
+
+<% end %>
+Current Forecast: <%= @forecast[0][:weather]%><br/>
+Inspection required? <%= @forecast[0][:inspection]%><br/>
+
 
 <div id="location_reports">
   <% %>

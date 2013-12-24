@@ -4,12 +4,13 @@ class PhotosController < ApplicationController
   def index
     @photos = Photo.all || "photos"
     @uploader = Photo.new.image
-    @uploader.success_action_redirect = new_photo_url
+    @uploader.success_action_redirect = new_location_report_photo_url
+    # @uploader.success_action_redirect = new_photo_url  #for heroku testing only until nested resources is complete
   end
 
   def new
     # @location = Location.find(params[:location_id])
-    # @report = Report.find(params[:report_id])
+    @report = Report.find(params[:report_id])   # comment this out for heroku testing until nest resources is complete
     @photo = Photo.new(key: params[:key])
     # @photo[:report_id] = params[:report_id]
     # @photo[:user_id] = current_user.id

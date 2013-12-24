@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20131215084311) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "address"
+    t.string   "street"
     t.string   "city"
     t.string   "state"
     t.string   "project_name"
