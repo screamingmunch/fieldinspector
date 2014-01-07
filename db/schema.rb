@@ -22,8 +22,13 @@ ActiveRecord::Schema.define(:version => 20131215084311) do
     t.string   "state"
     t.string   "project_name"
     t.integer  "zip"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "risk_level"
+    t.string   "contractor_name"
+    t.string   "contractor_address"
+    t.string   "contractor_contact_person"
+    t.string   "contractor_contact_phone"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "locations_users", :force => true do |t|
@@ -36,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20131215084311) do
   create_table "photos", :force => true do |t|
     t.string   "image"
     t.integer  "report_id"
+    t.integer  "user_id"
     t.string   "remote_image_url"
     t.boolean  "image_processed"
     t.datetime "created_at",       :null => false
@@ -58,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20131215084311) do
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
+    t.string   "profile_pic"
     t.string   "company"
     t.string   "title"
     t.string   "role"

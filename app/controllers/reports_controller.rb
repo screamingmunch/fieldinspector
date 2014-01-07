@@ -1,10 +1,28 @@
 class ReportsController < ApplicationController
   def index
     @location = Location.find(params[:location_id])
+    @reports = Report.all
   end
   def new
     @location = Location.find(params[:location_id])
     @report = Report.new
+    @report.location_id = @location.id
+    @report.user_id = current_user.id
+  end
+
+  def create
+    @location = Location.find(params[:location_id])
+    @report = Report.new
+    @report.location_id = @location.id
+    @report.user_id = current_user.id
+    @report.report_date = Date.today.to_s
+    @report.save
+    redirect_to location_report_path(@location.id, @report.id)
+  end
+
+  def show
+    @location = Location.find(params[:location_id])
+    @report = Report.find(params[:id])
     # @photo = Photo.create(params[:photo])
     url = "http://forecast.weather.gov/MapClick.php?lat=#{@location.latitude}&lon=#{@location.longitude}"
     @forecast = Hash.new
@@ -39,18 +57,16 @@ class ReportsController < ApplicationController
     end
   end
 
-  def create
-    @report = Report.create(params[:report])
-    redirect_to location_reports_path
-  end
-
-  def show
-  end
-
   def edit
   end
 
   def update
+    @location = Location.find(params[:location_id])
+    @report = Report.find(params[:id])
+    @report.update_attributes(params[:report])
+    # binding.pry
+    @report.save
+    redirect_to location_report_path(@location.id, @report.id)
   end
 
   def destroy

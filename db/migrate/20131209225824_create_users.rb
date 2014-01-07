@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string   :email
       t.string   :password_hash
       t.string   :password_salt
+      t.string   :profile_pic
       t.string   :company
       t.string   :title
       t.string   :role

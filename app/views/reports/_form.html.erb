@@ -1,35 +1,17 @@
 <h2>New Site Observation Report</h2>
+
 <%= form_for [@location, @report], :html => {:multipart => true} do |f| %>
-<div id="site_info">
-  <h2>Site Info:</h2>
-  <li><%= f.label :project_name %>: <%= @location.project_name %></li>
-  <li><%= f.label :address_line_1 %>: <%= @location.street %></li>
-  <li><%= f.label :address_line_2 %>: <%= @location.city %>  <%= @location.state %>, <%= @location.zip%></li>
-  <li><%= f.label :contractor %>: <%= @location.project_name %></li>
-  <li><%= f.label :current_forecast %>: <%= @forecast[0][:weather] %></li>
-  <li><%= f.label :local_temperature %>: <%= @current_temp %></li>
-  <li><%= f.label :chance_of_rain %>: <%= @chance %>%</li>
+  <div id="site_info">
 
+  <h3>You are creating a new inspection report for:</h3>
+  <li>Project Name: <%= @location.project_name %></li>
+  <li>Address Line 1: <%= @location.street %></li>
+  <li>Address Line 2: <%= @location.city %>  <%= @location.state %>, <%= @location.zip%></li>
+  <li>Contractor: <%= @location.contractor_name %></li>
 
+  <%= f.label :report_type %>:
 
+  <%= f.select :report_type, options_for_select(%w[Weekly Before_predicted_rain During_rain_event After_qualifying_rain_event Quarterly-non-stormwater Contained_stormwater_release]) %>
 
-</div>
-
-<div id="observations">
-  <h2>Field Observations:</h2>
-
-<button id="new_obs">Add Observation</button>
-   <%= javascript_tag do %>
-      $('#new_obs').on('click', function(e) {
-        $(e).preventDefault();
-        $('#observations').append("<%= escape_javascript render(:partial => 'observation') %>");
-      });
-    <% end %>
-
-</div>
-
-
-
-
-<p><%= f.submit %></p>
+<%= f.submit "Create a new inspection report for this location"%>
 <% end %>

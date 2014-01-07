@@ -2,5 +2,12 @@
 
   This is a new observation field
 
+  <%= form_for [@location, @report], :html => {:multipart => true} do |f| %>
+  <li>Report date: <%= @report.report_date %></li>
+  <div id="site_info">
+
+
+<%= f.submit "Update observation fields"%>
+<% end %>
 
 </div>

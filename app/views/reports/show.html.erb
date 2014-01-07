@@ -1,2 +1,31 @@
-<h1>Reports#show</h1>
-<p>Find me in app/views/reports/show.html.erb</p>
+<div>
+
+  <li>Report date: <%= @report.report_date %></li>
+  <div id="site_info">
+
+  <h2>Site Info:</h2>
+  <li>Project Name: <%= @location.project_name %></li>
+  <li>Address Line 1: <%= @location.street %></li>
+  <li>Address Line 2: <%= @location.city %>  <%= @location.state %>, <%= @location.zip%></li>
+  <li>Contractor: <%= @location.project_name %></li>
+  <li>Current Forecast: <%= @forecast[0][:weather] %></li>
+  <li>Local Temperature: <%= @current_temp %></li>
+  <li>Chance of rain: <%= @chance %>%</li>
+
+</div>
+
+
+
+<div id="observations">
+  <h2>Field Observations:</h2>
+  <li>Report type: <%= @report.report_type %></li>
+
+<button id="new_obs">Add Observation</button>
+   <%= javascript_tag do %>
+      $('#new_obs').on('click', function(event) {
+        event.preventDefault();
+        $('#observations').append("<%= escape_javascript render(:partial => 'observation') %>");
+      });
+    <% end %>
+
+</div>

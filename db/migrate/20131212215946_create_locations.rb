@@ -9,6 +9,11 @@ class CreateLocations < ActiveRecord::Migration
       t.string   :state
       t.string   :project_name
       t.integer  :zip
+      t.string   :risk_level
+      t.string   :contractor_name
+      t.string   :contractor_address
+      t.string   :contractor_contact_person
+      t.string   :contractor_contact_phone
       t.timestamps
     end
   end

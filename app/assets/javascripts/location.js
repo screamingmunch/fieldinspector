@@ -96,15 +96,17 @@ $(function(){
     $('#location').append('<li id="lat">'+lat+'</li>');
     $('#location').append('<li id="lng">'+lng+'</li>');
     $('#location').append('<li id="address">'+address+'</li>');
-    $('#current_location').append('Current Location:' + address);
-    $('#current_lat').append(typeof(lat));
-    $('#current_lat').append('Latitude:' + parseFloat(lat).toFixed(5));
-    $('#current_lng').append('Longitude' + parseFloat(lng).toFixed(5));
+    $('#current_location').append('Your device indicates that you are currently located at: ' + address);
+    // $('#current_lat').append(typeof(lat));
+    $('#current_lat').append('Latitude: ' + parseFloat(lat).toFixed(5));
+    $('#current_lng').append('Longitude: ' + parseFloat(lng).toFixed(5));
 
     //Creates a new project if the OK button is clicked
     $('#create_new_loc').click(function(){
       postRequest(lat, lng, address, street, city, state, zip); // POST these params to my backend locations table
       $('#create_new_loc').hide();
+      $('#get_forecast').hide();
+      $('#current_location').append('<p>Please refresh your page to see your most current active jobs</p>');
     });
 
     //get forecaset
